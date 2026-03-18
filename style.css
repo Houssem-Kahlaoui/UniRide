@@ -1,0 +1,279 @@
+/* 
+    UniRide Design System 
+    Colors: Blue (Tech/Trust), Green (Eco), White/Grey (Simplicity)
+*/
+
+:root {
+    --primary-blue: #0066FF;
+    --primary-green: #00D084;
+    --dark-blue: #0A192F;
+    --light-grey: #F8FAFC;
+    --text-dark: #1E293B;
+    --text-light: #64748B;
+    --white: #FFFFFF;
+    --glass: rgba(255, 255, 255, 0.7);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--light-grey);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    height: 40px;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    background: radial-gradient(circle at top right, rgba(0, 102, 255, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(0, 208, 132, 0.05), transparent);
+    margin-top: 60px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 80%;
+    max-width: 450px;
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.1));
+}
+
+h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.slogan {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 102, 255, 0.3);
+}
+
+.btn-secondary {
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+/* Sections Global */
+section {
+    padding: 8rem 5%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.accent {
+    color: var(--primary-blue);
+}
+
+/* Problem/Opportunity Cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card i {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+/* How it Works - Steps */
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.step:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.step-num {
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(0, 102, 255, 0.1);
+}
+
+/* Impact Section */
+.impact-box {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    color: var(--white);
+    padding: 4rem;
+    border-radius: 30px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: var(--dark-blue);
+    color: var(--white);
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.footer-content h3 {
+    margin-bottom: 1rem;
+}
+
+.members {
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .hero { flex-direction: column; text-align: center; height: auto; padding-top: 100px; }
+    .step { flex-direction: column; text-align: center; gap: 1rem; }
+    .step:nth-child(even) { flex-direction: column; }
+    .nav-links { display: none; }
+}
