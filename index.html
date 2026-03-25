@@ -11,6 +11,9 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="uniride_logo-removebg-preview.png">
@@ -33,21 +36,6 @@
         <a href="#telecharger" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Essayer l'App</a>
     </nav>
 
-    <!-- QR Code Banner -->
-    <div id="qr-banner">
-        <div id="qr-banner-inner">
-            <div id="qrcode-container">
-                <div id="qrcode"></div>
-            </div>
-            <div id="qr-banner-text">
-                <span id="qr-label">📱Scannez et découvrez notre site web !</span>
-                <span id="qr-url">uniride-roan.vercel.app</span>
-            </div>
-            <button id="qr-close" onclick="document.getElementById('qr-banner').style.display='none'" title="Fermer">✕</button>
-        </div>
-    </div>
-
-
     <!-- Slide 1 — Introduction / Hero -->
     <header class="hero animate">
         <div class="hero-content">
@@ -63,6 +51,47 @@
             <img src="app_mockup.png" alt="UniRide App Mockup">
         </div>
     </header>
+
+    <!-- Floating QR Code Button -->
+    <div id="qr-fab" onclick="toggleQR()" title="Scanner le QR code" style="
+        position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+        width: 58px; height: 58px; border-radius: 50%;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        box-shadow: 0 6px 24px rgba(37,99,235,0.5);
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    " onmouseenter="this.style.transform='scale(1.1)'" onmouseleave="this.style.transform='scale(1)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            <path d="M14 14h3v3h-3z"/><path d="M17 17h4"/><path d="M21 14v3"/>
+        </svg>
+    </div>
+
+    <!-- QR Popup Card -->
+    <div id="qr-popup" style="
+        position: fixed; bottom: 100px; right: 28px; z-index: 9998;
+        background: white; border-radius: 20px;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+        padding: 20px 20px 14px;
+        display: none; flex-direction: column; align-items: center; gap: 10px;
+        animation: fadeInUp 0.25s ease;
+    ">
+        <p style="font-size: 0.78rem; font-weight: 700; color: #1e293b; letter-spacing: 0.06em; text-transform: uppercase; margin: 0;">📱 Scannez pour visiter</p>
+        <div id="qrcode"></div>
+        <p style="font-size: 0.72rem; color: #64748b; margin: 0;">uniride-roan.vercel.app</p>
+        <button onclick="toggleQR()" style="
+            margin-top: 4px; border: none; background: #f1f5f9;
+            color: #475569; font-size: 0.78rem; padding: 6px 18px;
+            border-radius: 99px; cursor: pointer; font-weight: 600;
+        ">Fermer</button>
+    </div>
+
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 
     <!-- Slide 2 — Le problème -->
     <section id="probleme">
@@ -260,6 +289,7 @@
                 <p>Présenté par :</p>
                 <p>👨‍🎓 Houssem Kahlaoui • 👨‍🎓 Wissem Bejaoui • 👨‍🎓 Mouhli Seifeddine</p>
             </div>
+
             <div style="margin-top: 2rem; color: rgba(255, 255, 255, 0.4); font-size: 0.8rem;">
                 © 2026 UniRide - Projet Étudiant
             </div>
@@ -270,6 +300,22 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Generate QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: "https://uniride-roan.vercel.app/",
+            width: 180,
+            height: 180,
+            colorDark: "#0f172a",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        function toggleQR() {
+            var popup = document.getElementById('qr-popup');
+            var isVisible = popup.style.display === 'flex';
+            popup.style.display = isVisible ? 'none' : 'flex';
+        }
     </script>
 </body>
 </html>
